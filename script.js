@@ -32,6 +32,11 @@ boxes.forEach((box) => {
     if (timesPlayer.length >= 3) {
       loopWinningBox(timesPlayer);
     }
+    const tie = Array.from(boxes).every((box) => box.innerHTML !== "");
+    if (tie && !win) {
+      playAgainBtn.classList.add("show-btn");
+      title.innerHTML = "tie";
+    }
   });
 });
 
@@ -42,12 +47,6 @@ function loopWinningBox(player) {
       win = true;
       playAgainBtn.classList.add("show-btn");
       title.innerText = `${player == timesPlayer ? "x" : "o"} won`;
-    } else {
-      const tie = Array.from(boxes).every((box) => box.innerHTML !== "");
-      if (tie) {
-        playAgainBtn.classList.add("show-btn");
-        title.innerHTML = "tie";
-      }
     }
   });
 }
